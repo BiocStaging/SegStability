@@ -7,7 +7,10 @@
 \title{Descriptive segmentation sensitivity in spatial transcriptomics}
 \description{
 Infrastructure for comparing segmentations of an immutable molecule universe.
-This development skeleton does not yet provide scientific analysis functions.
+Create universe-bound assignments with [SegmentationPartition()] and inspect
+the full census, semantic statuses and retained ambiguity through its
+  accessors.
+Comparative scientific analysis functions are not implemented at this stage.
 }
 \seealso{
 Useful links:

@@ -2,6 +2,8 @@
 ^CODEX_START_HERE\.md$
 ^CURRENT_STATUS\.md$
 ^docs$
+^logs$
+^build-artifacts$
 ^\.github$
 ^SegStability.*\.tar\.gz$
 ^SegStability.*\.Rcheck$

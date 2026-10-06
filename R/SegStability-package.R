@@ -1,10 +1,13 @@
 #' Descriptive segmentation sensitivity in spatial transcriptomics
 #'
 #' Infrastructure for comparing segmentations of an immutable molecule universe.
-#' This development skeleton does not yet provide scientific analysis functions.
+#' Create universe-bound assignments with [SegmentationPartition()] and inspect
+#' the full census, semantic statuses and retained ambiguity through its
+#'   accessors.
+#' Comparative scientific analysis functions are not implemented at this stage.
 #'
 #' @keywords internal
-#' @importFrom methods is
+#' @importFrom methods is show
 #' @importFrom S4Vectors DataFrame
 #' @importFrom digest digest
 "_PACKAGE"
