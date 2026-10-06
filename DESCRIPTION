@@ -1,0 +1,29 @@
+Package: SegStability
+Type: Package
+Title: Descriptive Segmentation Sensitivity in Spatial Transcriptomics
+Version: 0.99.0
+Authors@R: person("Rama Krishna", "Pudota",
+    email = "ramakrishnapudota36@gmail.com", role = c("aut", "cre"))
+Description: Provides infrastructure for descriptive segmentation-sensitivity
+    analysis in molecule-resolved spatial transcriptomics. The intended analyses
+    compare alternative segmentations of the same immutable molecule universe
+    and describe effects on categorical cell-state conclusions. This initial
+    development version contains package infrastructure only and does not
+    implement scientific analyses or rank segmentation accuracy.
+License: Artistic-2.0
+Encoding: UTF-8
+biocViews: Spatial, Transcriptomics, SingleCell
+Imports:
+    methods,
+    S4Vectors,
+    digest
+Suggests:
+    testthat (>= 3.0.0),
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    bit64
+Config/testthat/edition: 3
+URL: https://github.com/ramakrishna-p21/SegStability
+BugReports: https://github.com/ramakrishna-p21/SegStability/issues
+Config/roxygen2/version: 8.1.0

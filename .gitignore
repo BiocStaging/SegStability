@@ -1,0 +1,5 @@
+SegStability*.tar.gz
+SegStability*.Rcheck/
+*.BiocCheck/
+.dependency-install.log
+.verification*
