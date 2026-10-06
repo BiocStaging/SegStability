@@ -8,8 +8,9 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     analysis in molecule-resolved spatial transcriptomics. The intended analyses
     compare alternative segmentations of the same immutable molecule universe
     and describe effects on categorical cell-state conclusions. This initial
-    development version contains package infrastructure only and does not
-    implement scientific analyses or rank segmentation accuracy.
+    development version provides lossless universe identity and certified
+    segmentation partitions. It does not yet implement comparative scientific
+    analyses or rank segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
 biocViews: Spatial, Transcriptomics, SingleCell

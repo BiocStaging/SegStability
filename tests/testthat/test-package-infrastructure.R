@@ -1,7 +1,16 @@
-test_that("the skeleton loads without scientific exports", {
+test_that("the namespace exposes exactly the WP02 public boundary", {
     expect_true(isNamespaceLoaded("SegStability"))
-    expect_identical(getNamespaceExports("SegStability"), character())
+    exports <- getNamespaceExports("SegStability")
+    public <- exports[!startsWith(exports, ".__")]
+    expect_identical(sort(public), sort(c("SegmentationPartition", "cellCensus",
+        "assignmentStatus", "ambiguityData", "provenance", "runMetadata",
+        "show")))
     expect_identical(
         as.character(utils::packageVersion("SegStability")), "0.99.0"
     )
+})
+
+test_that("the S4 show generic is explicitly imported for minimal namespace load", {
+    imports <- getNamespaceImports("SegStability")
+    expect_true("show" %in% names(imports$methods))
 })
