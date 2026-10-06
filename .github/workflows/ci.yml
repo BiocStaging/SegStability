@@ -1,0 +1,19 @@
+name: Bioconductor CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  bioccheck:
+    # Upstream recommends @main while this reusable workflow is pre-release.
+    # BiocCheck will flag the vignette deferred by the frozen implementation plan.
+    uses: Bioconductor/workflows/.github/workflows/bioccheck.yml@main
+    with:
+      error_on: warning
+      enable_pkgdown: false
