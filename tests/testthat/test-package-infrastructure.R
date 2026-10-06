@@ -1,10 +1,11 @@
-test_that("the namespace exposes exactly the WP02 public boundary", {
+test_that("the namespace exposes exactly the WP03 public boundary", {
     expect_true(isNamespaceLoaded("SegStability"))
     exports <- getNamespaceExports("SegStability")
     public <- exports[!startsWith(exports, ".__")]
     expect_identical(sort(public), sort(c("SegmentationPartition", "cellCensus",
         "assignmentStatus", "ambiguityData", "provenance", "runMetadata",
-        "show")))
+        "show", "SegmentationSet", "segmentationNames", "segmentationInfo",
+        "moleculeData", "featureData", "summary")))
     expect_identical(
         as.character(utils::packageVersion("SegStability")), "0.99.0"
     )
