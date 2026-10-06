@@ -87,6 +87,22 @@ Prefer one focused agent working carefully over unnecessary orchestration.
 
 ---
 
+## Skill usage
+
+For substantial implementation work, explicitly evaluate the installed relevant
+skills before coding.
+
+Use skills when they materially improve correctness, especially for:
+Bioconductor package development, R/S4 design, testing, verification, debugging,
+and scientific reasoning.
+
+For each substantive work package:
+- record in the plan which skills will be used and why;
+- record in the final audit which skills were actually used;
+- avoid invoking skills mechanically or redundantly.
+
+---
+
 ## Token and context discipline
 
 Usage efficiency matters.
@@ -268,6 +284,21 @@ Keep `CURRENT_STATUS.md` concise and local. Permanent repository documentation
 should contain only information that belongs in the package/project record.
 
 Do not rely on chat/session history as the only record of implementation work.
+
+---
+
+## Generated logs and build artifacts
+
+Do not place generated logs or build artifacts in the repository root.
+
+Use:
+
+- `logs/` for local installation, test, check, verification, and diagnostic logs
+- `build-artifacts/` for generated source tarballs and similar local build outputs
+
+Both directories are local-only and excluded through `.git/info/exclude`.
+
+Do not commit or push their contents.
 
 ---
 
