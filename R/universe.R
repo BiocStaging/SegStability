@@ -23,14 +23,14 @@
         fingerprint_value = fp$fingerprint_value)
 }
 
-.validateUniverse <- function(universe) {
-    if (!methods::is(universe, "SimpleList") ||
-        !methods::is(universe$molecules, "DataFrame") ||
-        !methods::is(universe$features, "DataFrame")) {
+.checkUniverseStructure <- function(m, f) {
+    if (!methods::is(m, "DataFrame") || !methods::is(f, "DataFrame") ||
+        !all(c("molecule_id", "molecule_index", "feature_index") %in%
+             colnames(m)) || !"feature_id" %in% colnames(f) ||
+        anyDuplicated(colnames(m)) || anyDuplicated(colnames(f))) {
         stop("Invalid internal universe structure", call. = FALSE)
     }
-    m <- universe$molecules
-    f <- universe$features
+    .checkIndexSize(nrow(m))
     .validateIds(m$molecule_id, "molecule_id")
     .validateFeatures(f$feature_id, unique = TRUE)
     if (!identical(m$molecule_index, seq_len(nrow(m))) ||
@@ -39,6 +39,20 @@
         any(m$feature_index > nrow(f))) {
         stop("Invalid molecule_index or feature_index", call. = FALSE)
     }
+    if (!identical(unique(m$feature_index), seq_len(nrow(f)))) {
+        stop("Feature dictionary must follow first-occurrence mapping",
+             call. = FALSE)
+    }
+    invisible(NULL)
+}
+
+.validateUniverse <- function(universe) {
+    if (!methods::is(universe, "SimpleList")) {
+        stop("Invalid internal universe structure", call. = FALSE)
+    }
+    m <- universe$molecules
+    f <- universe$features
+    .checkUniverseStructure(m, f)
     if (!identical(universe$fingerprint_version, "1") ||
         !identical(universe$fingerprint_algorithm, "sha256")) {
         stop("Unsupported universe fingerprint version/algorithm",

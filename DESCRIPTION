@@ -9,8 +9,8 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     compare alternative segmentations of the same immutable molecule universe
     and describe effects on categorical cell-state conclusions. This initial
     development version provides lossless universe identity and certified
-    segmentation partitions. It does not yet implement comparative scientific
-    analyses or rank segmentation accuracy.
+    segmentation partitions and shared-universe segmentation sets. It does not
+    yet implement comparative scientific analyses or rank segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
 biocViews: Spatial, Transcriptomics, SingleCell

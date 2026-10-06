@@ -6,3 +6,5 @@
   and versioned internal universe and assignment integrity fingerprints.
 * Add SegmentationPartition with explicit cell censuses, three assignment
   statuses, retained ambiguity evidence, structural validity and accessors.
+* Add SegmentationSet ownership and exact partition binding, ordered segmentation
+  descriptors, molecule/feature accessors and structural show/summary methods.
