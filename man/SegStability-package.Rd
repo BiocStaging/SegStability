@@ -7,12 +7,15 @@
 \title{Descriptive segmentation sensitivity in spatial transcriptomics}
 \description{
 Infrastructure for comparing segmentations of an immutable molecule universe.
-Create universe-bound assignments with [SegmentationPartition()] and inspect
+Create universe-bound assignments with \code{\link[=SegmentationPartition]{SegmentationPartition()}} and inspect
 the full census, semantic statuses and retained ambiguity through its
-  accessors.
-Bind named partitions to one shared universe with [SegmentationSet()] and
+accessors.
+Bind named partitions to one shared universe with \code{\link[=SegmentationSet]{SegmentationSet()}} and
 inspect molecule/feature data and segmentation information.
-Comparative scientific analysis functions are not implemented at this stage.
+Use \code{\link[=compareSegmentations]{compareSegmentations()}} for complete shared-molecule correspondence,
+independent assigned denominators, directional dominance and components
+including isolates. Inspect results with \code{\link[=correspondenceEdges]{correspondenceEdges()}},
+\code{\link[=cellSummary]{cellSummary()}}, \code{\link[=componentSummary]{componentSummary()}} and \code{\link[=assignmentSummary]{assignmentSummary()}}.
 }
 \seealso{
 Useful links:

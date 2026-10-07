@@ -6,9 +6,13 @@
 #'   accessors.
 #' Bind named partitions to one shared universe with [SegmentationSet()] and
 #' inspect molecule/feature data and segmentation information.
-#' Comparative scientific analysis functions are not implemented at this stage.
+#' Use [compareSegmentations()] for complete shared-molecule correspondence,
+#' independent assigned denominators, directional dominance and components
+#' including isolates. Inspect results with [correspondenceEdges()],
+#' [cellSummary()], [componentSummary()] and [assignmentSummary()].
 #'
 #' @keywords internal
+#' @md
 #' @importFrom methods is show
 #' @importFrom S4Vectors DataFrame
 #' @importFrom digest digest
