@@ -20,3 +20,7 @@
   equal-cell means and numeric component summaries. Preserve supplied state
   types, independent denominators and distinct-molecule ambiguity union.
   Required state checks must PASS; unavailable source evidence stays UNKNOWN.
+* Add supportSensitivity() with independent directional fractional thresholds,
+  original denominators and graph semantics, full-census cell/component support
+  accounting and optional state estimands. Structural results are independent
+  of labels; unavailable source evidence remains nonblocking UNKNOWN.

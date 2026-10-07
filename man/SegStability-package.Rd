@@ -23,6 +23,8 @@ Validation reports preserve unknown evidence and never repair input.
 Supply external categorical labels to \code{\link[=stateStability]{stateStability()}} to describe
 same-state, different-state and unresolved mass across the complete graph,
 retaining full census cells and independent assigned denominators.
+Use \code{\link[=supportSensitivity]{supportSensitivity()}} for directional support retention and optional
+state agreement while preserving the complete primary comparison.
 }
 \seealso{
 Useful links:

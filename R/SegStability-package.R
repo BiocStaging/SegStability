@@ -17,6 +17,8 @@
 #' Supply external categorical labels to [stateStability()] to describe
 #' same-state, different-state and unresolved mass across the complete graph,
 #' retaining full census cells and independent assigned denominators.
+#' Use [supportSensitivity()] for directional support retention and optional
+#' state agreement while preserving the complete primary comparison.
 #'
 #' @keywords internal
 #' @md

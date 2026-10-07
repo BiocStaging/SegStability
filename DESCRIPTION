@@ -14,8 +14,9 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     structural component summaries, and explicit validation reports for
     scientific consistency, optional spatial inputs, integrity and provenance
     completeness, and categorical state stability with explicit unresolved
-    evidence and full-population accounting. Results do not rank segmentation
-    accuracy.
+    evidence and full-population accounting, and directional support sensitivity
+    preserving original graph semantics and denominators. Results do not rank
+    segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
 biocViews: Spatial, Transcriptomics, SingleCell

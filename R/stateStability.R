@@ -9,12 +9,13 @@
     report
 }
 
-.stateComparisonChecks <- function(comparison) {
-    input <- .validationCheck("state.comparison.input",
+.stateComparisonChecks <- function(comparison, prefix = "state",
+                                   enforce = .stateRequire) {
+    input <- .validationCheck(paste0(prefix, ".comparison.input"),
         if (methods::is(comparison, "SegmentationComparison")) TRUE else
             "Expected a SegmentationComparison")
-    .stateRequire(input)
-    columns <- .validationCheck("state.comparison.columns", {
+    enforce(input)
+    columns <- .validationCheck(paste0(prefix, ".comparison.columns"), {
         tables <- list(comparison@cell_summary_1, comparison@cell_summary_2,
             comparison@components, comparison@assignment_summary,
             S4Vectors::mcols(comparison@edges))
@@ -24,11 +25,11 @@
         }
         TRUE
     })
-    .stateRequire(columns)
-    structure <- .validationCheck("state.comparison.structure",
+    enforce(columns)
+    structure <- .validationCheck(paste0(prefix, ".comparison.structure"),
         methods::validObject(comparison, test = TRUE, complete = TRUE))
-    .stateRequire(structure)
-    graph <- .validationCheck("state.comparison.complete_graph", {
+    enforce(structure)
+    graph <- .validationCheck(paste0(prefix, ".comparison.complete_graph"), {
         h <- comparison@edges
         q <- S4Vectors::from(h)
         s <- S4Vectors::to(h)
@@ -53,7 +54,7 @@
         }
         TRUE
     })
-    .stateRequire(graph)
+    enforce(graph)
     .validationBind(list(input, columns, structure, graph))
 }
 
