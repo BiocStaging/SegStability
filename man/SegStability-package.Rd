@@ -25,6 +25,8 @@ same-state, different-state and unresolved mass across the complete graph,
 retaining full census cells and independent assigned denominators.
 Use \code{\link[=supportSensitivity]{supportSensitivity()}} for directional support retention and optional
 state agreement while preserving the complete primary comparison.
+Use \code{\link[=anchorTopology]{anchorTopology()}} with external optional sf geometry and a declared
+rectangle for descriptive reciprocal dominance fans and explicit eligibility.
 }
 \seealso{
 Useful links:

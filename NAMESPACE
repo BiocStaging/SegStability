@@ -3,6 +3,7 @@
 export(SegmentationPartition)
 export(SegmentationSet)
 export(ambiguityData)
+export(anchorTopology)
 export(assignmentStatus)
 export(assignmentSummary)
 export(cellCensus)

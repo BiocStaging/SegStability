@@ -19,6 +19,8 @@
 #' retaining full census cells and independent assigned denominators.
 #' Use [supportSensitivity()] for directional support retention and optional
 #' state agreement while preserving the complete primary comparison.
+#' Use [anchorTopology()] with external optional sf geometry and a declared
+#' rectangle for descriptive reciprocal dominance fans and explicit eligibility.
 #'
 #' @keywords internal
 #' @md

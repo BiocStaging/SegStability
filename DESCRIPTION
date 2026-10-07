@@ -15,7 +15,9 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     scientific consistency, optional spatial inputs, integrity and provenance
     completeness, and categorical state stability with explicit unresolved
     evidence and full-population accounting, and directional support sensitivity
-    preserving original graph semantics and denominators. Results do not rank
+    preserving original graph semantics and denominators, and optional spatial
+    reciprocal-anchor topology with explicit geometry eligibility and observation
+    windows. Results do not rank
     segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
