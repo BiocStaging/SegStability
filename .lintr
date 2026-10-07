@@ -1,0 +1,16 @@
+linters: list(
+    assignment_linter = assignment_linter(),
+    seq_linter = seq_linter(),
+    T_and_F_symbol_linter = T_and_F_symbol_linter(),
+    equals_na_linter = equals_na_linter(),
+    vector_logic_linter = vector_logic_linter(),
+    trailing_whitespace_linter = trailing_whitespace_linter(),
+    # Production source follows 80 columns; test fixtures allow 100.
+    line_length_linter = Linter(function(source_expression) {
+        path <- gsub("\\", "/", source_expression$filename, fixed = TRUE)
+        limit <- if (grepl("(^|/)tests/", path)) 100L else 80L
+        line_length_linter(limit)(source_expression)
+    }, linter_level = "file")
+    # Explicit static-only rules: no package loading or usage/namespace checks.
+    # Naming, return style, and duplicate-name fixtures need no style gate.
+    )
