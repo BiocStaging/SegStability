@@ -108,3 +108,61 @@ methods::setMethod("featureData", "SegmentationSet", function(x) x@features)
 #' @rdname SegmentationSet
 #' @export
 methods::setMethod("provenance", "SegmentationSet", function(x) x@provenance)
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setGeneric("correspondenceEdges",
+    function(x) methods::standardGeneric("correspondenceEdges"))
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("correspondenceEdges", "SegmentationComparison",
+                   function(x) x@edges)
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setGeneric("cellSummary",
+    function(x, segmentation) methods::standardGeneric("cellSummary"))
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("cellSummary", "SegmentationComparison",
+    function(x, segmentation) {
+        if (missing(segmentation) || !.scalarString(segmentation) ||
+            !segmentation %in% x@segmentation_names) {
+            stop("segmentation must be one compared segmentation name",
+                 call. = FALSE)
+        }
+        if (segmentation == x@segmentation_names[1L]) x@cell_summary_1 else
+            x@cell_summary_2
+    })
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setGeneric("componentSummary",
+    function(x) methods::standardGeneric("componentSummary"))
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("componentSummary", "SegmentationComparison",
+                   function(x) x@components)
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setGeneric("assignmentSummary",
+    function(x) methods::standardGeneric("assignmentSummary"))
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("assignmentSummary", "SegmentationComparison",
+                   function(x) x@assignment_summary)
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("segmentationNames", "SegmentationComparison",
+                   function(x) x@segmentation_names)
+
+#' @rdname SegmentationComparison
+#' @export
+methods::setMethod("provenance", "SegmentationComparison",
+                   function(x) x@provenance)
