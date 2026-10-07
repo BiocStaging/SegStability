@@ -5,6 +5,7 @@
 ^logs$
 ^build-artifacts$
 ^\.github$
+^\.lintr$
 ^SegStability.*\.tar\.gz$
 ^SegStability.*\.Rcheck$
 ^.*\.BiocCheck$
