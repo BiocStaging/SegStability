@@ -20,6 +20,9 @@ Inspect scientific consistency and integrity with \code{\link[=validateSegmentat
 and \code{\link[=validateSegmentationSet]{validateSegmentationSet()}}, metadata with \code{\link[=validateProvenance]{validateProvenance()}}, and
 spatial inputs with \code{\link[=validateCoordinates]{validateCoordinates()}} and \code{\link[=validateGeometry]{validateGeometry()}}.
 Validation reports preserve unknown evidence and never repair input.
+Supply external categorical labels to \code{\link[=stateStability]{stateStability()}} to describe
+same-state, different-state and unresolved mass across the complete graph,
+retaining full census cells and independent assigned denominators.
 }
 \seealso{
 Useful links:
