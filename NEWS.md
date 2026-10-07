@@ -11,3 +11,7 @@
 * Add SegmentationComparison and compareSegmentations() with complete positive
   correspondence, independent denominators, exact dominance ties, unique
   reciprocity, components including isolates and assignment-status accounting.
+* Add explicit partition, set, coordinate, geometry and provenance validation
+  reports separating consistency, completeness, integrity and unchecked evidence.
+  Finite double coordinates are supported; strict mode stops only on FAIL/error.
+  Optional sf geometry is inspected without repair or transformation.

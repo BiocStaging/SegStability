@@ -10,6 +10,10 @@
 #' independent assigned denominators, directional dominance and components
 #' including isolates. Inspect results with [correspondenceEdges()],
 #' [cellSummary()], [componentSummary()] and [assignmentSummary()].
+#' Inspect scientific consistency and integrity with [validateSegmentation()]
+#' and [validateSegmentationSet()], metadata with [validateProvenance()], and
+#' spatial inputs with [validateCoordinates()] and [validateGeometry()].
+#' Validation reports preserve unknown evidence and never repair input.
 #'
 #' @keywords internal
 #' @md

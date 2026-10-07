@@ -16,6 +16,10 @@ Use \code{\link[=compareSegmentations]{compareSegmentations()}} for complete sha
 independent assigned denominators, directional dominance and components
 including isolates. Inspect results with \code{\link[=correspondenceEdges]{correspondenceEdges()}},
 \code{\link[=cellSummary]{cellSummary()}}, \code{\link[=componentSummary]{componentSummary()}} and \code{\link[=assignmentSummary]{assignmentSummary()}}.
+Inspect scientific consistency and integrity with \code{\link[=validateSegmentation]{validateSegmentation()}}
+and \code{\link[=validateSegmentationSet]{validateSegmentationSet()}}, metadata with \code{\link[=validateProvenance]{validateProvenance()}}, and
+spatial inputs with \code{\link[=validateCoordinates]{validateCoordinates()}} and \code{\link[=validateGeometry]{validateGeometry()}}.
+Validation reports preserve unknown evidence and never repair input.
 }
 \seealso{
 Useful links:

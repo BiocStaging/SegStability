@@ -11,7 +11,9 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     development version provides lossless universe identity and certified
     segmentation partitions and shared-universe segmentation sets, complete
     pairwise shared-molecule correspondence, directional dominance and
-    structural component summaries. Results do not rank segmentation accuracy.
+    structural component summaries, and explicit validation reports for
+    scientific consistency, optional spatial inputs, integrity and provenance
+    completeness. Results do not rank segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
 biocViews: Spatial, Transcriptomics, SingleCell
@@ -24,7 +26,8 @@ Suggests:
     BiocStyle,
     knitr,
     rmarkdown,
-    bit64
+    bit64,
+    sf
 Config/testthat/edition: 3
 URL: https://github.com/ramakrishna-p21/SegStability
 BugReports: https://github.com/ramakrishna-p21/SegStability/issues
