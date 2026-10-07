@@ -15,3 +15,8 @@
   reports separating consistency, completeness, integrity and unchecked evidence.
   Finite double coordinates are supported; strict mode stops only on FAIL/error.
   Optional sf geometry is inspected without repair or transformation.
+* Add stateStability() for external categorical labels, with complete-graph
+  weighted agreement, disagreement and unresolved accounting, directional
+  equal-cell means and numeric component summaries. Preserve supplied state
+  types, independent denominators and distinct-molecule ambiguity union.
+  Required state checks must PASS; unavailable source evidence stays UNKNOWN.

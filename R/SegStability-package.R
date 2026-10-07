@@ -14,6 +14,9 @@
 #' and [validateSegmentationSet()], metadata with [validateProvenance()], and
 #' spatial inputs with [validateCoordinates()] and [validateGeometry()].
 #' Validation reports preserve unknown evidence and never repair input.
+#' Supply external categorical labels to [stateStability()] to describe
+#' same-state, different-state and unresolved mass across the complete graph,
+#' retaining full census cells and independent assigned denominators.
 #'
 #' @keywords internal
 #' @md
