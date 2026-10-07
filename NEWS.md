@@ -24,3 +24,7 @@
   original denominators and graph semantics, full-census cell/component support
   accounting and optional state estimands. Structural results are independent
   of labels; unavailable source evidence remains nonblocking UNKNOWN.
+* Add anchorTopology() with complete-graph unique reciprocal anchors, strict
+  rectangular-window bbox eligibility, exact secondary fan classes and explicit
+  unavailable/ineligible geometry strata. Preserve full censuses and graph
+  semantics without geometry repair or coordinate transformation.
