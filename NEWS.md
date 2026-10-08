@@ -31,3 +31,7 @@
 * Add compareGeometry() with polygon overlap metrics for molecule edges and
   positive geometric pairs, full-census eligibility and exact-objective derived
   maximum-IoU matching. Preserve primary graph/components and source geometry.
+* Add replicateAgreement() for explicitly selected segmentation runs, reporting
+  all pairwise assignment-status contingencies and conditional label-invariant
+  ARI. Preserve run metadata and exact combinatorial degeneracy checks without
+  matching run-local cell labels or averaging run-specific conclusions.
