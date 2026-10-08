@@ -28,3 +28,6 @@
   rectangular-window bbox eligibility, exact secondary fan classes and explicit
   unavailable/ineligible geometry strata. Preserve full censuses and graph
   semantics without geometry repair or coordinate transformation.
+* Add compareGeometry() with polygon overlap metrics for molecule edges and
+  positive geometric pairs, full-census eligibility and exact-objective derived
+  maximum-IoU matching. Preserve primary graph/components and source geometry.

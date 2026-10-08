@@ -17,7 +17,8 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     evidence and full-population accounting, and directional support sensitivity
     preserving original graph semantics and denominators, and optional spatial
     reciprocal-anchor topology with explicit geometry eligibility and observation
-    windows. Results do not rank
+    windows, and direct polygon-overlap comparison with derived maximum-IoU
+    matching preserving the primary molecule correspondence. Results do not rank
     segmentation accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
