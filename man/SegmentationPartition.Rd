@@ -53,15 +53,16 @@ runMetadata(x)
 \S4method{runMetadata}{SegmentationPartition}(x)
 }
 \arguments{
-\item{molecules}{A S4Vectors DataFrame with unique, lossless molecule_id and
-base character feature_id columns. Row order defines the immutable
+\item{molecules}{A data.frame or S4Vectors DataFrame with lossless
+molecule_id and base character feature_id columns. Row order defines the
+immutable
 universe.
 Additional columns are retained internally without transformation. Internal
 molecule_index and feature_index columns are reserved.}
 
 \item{name}{Nonempty, nonmissing character scalar naming the segmentation.}
 
-\item{cells}{A S4Vectors DataFrame containing unique, lossless cell_id values
+\item{cells}{A data.frame or S4Vectors DataFrame with unique lossless cell_id
 for the full census, including zero-molecule cells.}
 
 \item{molecule_id}{External assignment molecule IDs, exactly the universe

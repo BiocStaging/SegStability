@@ -49,8 +49,8 @@ featureData(x)
 \S4method{provenance}{SegmentationSet}(x)
 }
 \arguments{
-\item{molecules}{A S4Vectors DataFrame with unique lossless molecule_id and
-character feature_id, in immutable universe order. Other columns are
+\item{molecules}{A data.frame or DataFrame with unique lossless molecule_id
+and character feature_id, in immutable universe order. Other columns are
 retained.}
 
 \item{segmentations}{A uniquely named base list or S4Vectors SimpleList of

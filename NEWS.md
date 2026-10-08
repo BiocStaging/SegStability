@@ -1,5 +1,10 @@
 # SegStability 0.99.0
 
+* Add conditional MoleculeExperiment ingestion with original exact molecule IDs,
+  explicit assignments and full censuses, plus explicitly keyed
+  SpatialFeatureExperiment geometry sidecars. Preserve ambiguity, coordinates,
+  CRS and supplied metadata without inference or repair. Adapter packages remain
+  optional; base data.frame ingestion preserves scientific column classes.
 * Initialize package infrastructure for descriptive segmentation-sensitivity
   analysis.
 * Add exact molecule-universe alignment, character-only feature dictionaries,

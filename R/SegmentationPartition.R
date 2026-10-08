@@ -132,13 +132,14 @@
 #'   establish neither source authenticity nor provenance. Structural validity
 #'   checks fingerprint fields without repeating expensive source-ID matching.
 #'
-#' @param molecules A S4Vectors DataFrame with unique, lossless molecule_id and
-#'   base character feature_id columns. Row order defines the immutable
+#' @param molecules A data.frame or S4Vectors DataFrame with lossless
+#'   molecule_id and base character feature_id columns. Row order defines the
+#'   immutable
 #'   universe.
 #'   Additional columns are retained internally without transformation. Internal
 #'   molecule_index and feature_index columns are reserved.
 #' @param name Nonempty, nonmissing character scalar naming the segmentation.
-#' @param cells A S4Vectors DataFrame containing unique, lossless cell_id values
+#' @param cells A data.frame or S4Vectors DataFrame with unique lossless cell_id
 #'   for the full census, including zero-molecule cells.
 #' @param molecule_id External assignment molecule IDs, exactly the universe
 #'   members in any order, using the universe ID family.
@@ -230,6 +231,7 @@ SegmentationPartition <- function(molecules, name, cells, molecule_id, status,
              call. = FALSE)
     }
     universe <- .prepareUniverse(molecules)
+    cells <- .ingestionTable(cells, "cells")
     if (!methods::is(cells, "DataFrame") ||
         !"cell_id" %in% colnames(cells) || anyDuplicated(colnames(cells))) {
         stop("cells must be a DataFrame containing cell_id", call. = FALSE)

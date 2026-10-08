@@ -1,4 +1,4 @@
-test_that("the namespace exposes exactly the WP10 public boundary", {
+test_that("the namespace exposes exactly the WP11 public boundary", {
     expect_true(isNamespaceLoaded("SegStability"))
     exports <- getNamespaceExports("SegStability")
     public <- exports[!startsWith(exports, ".__")]
@@ -10,7 +10,8 @@ test_that("the namespace exposes exactly the WP10 public boundary", {
         "assignmentSummary", "validateSegmentation", "validateSegmentationSet",
         "validateCoordinates", "validateGeometry", "validateProvenance",
         "stateStability", "supportSensitivity", "anchorTopology",
-        "compareGeometry", "replicateAgreement")))
+        "compareGeometry", "replicateAgreement", "fromMoleculeExperiment",
+        "geometryFromSpatialFeatureExperiment")))
     expect_identical(
         as.character(utils::packageVersion("SegStability")), "0.99.0"
     )
