@@ -2,7 +2,7 @@ test_that("anchorTopology has exactly the frozen public signature", {
     expect_identical(names(formals(anchorTopology)),
                      c("comparison", "geometry", "window", "coordinate_info"))
     expect_null(formals(anchorTopology)$coordinate_info)
-    expect_false("compareGeometry" %in% getNamespaceExports("SegStability"))
+    expect_false("replicateAgreement" %in% getNamespaceExports("SegStability"))
 })
 
 test_that("topology validates the exact rectangle without bounds repair", {

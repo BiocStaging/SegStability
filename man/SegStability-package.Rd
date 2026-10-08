@@ -27,6 +27,8 @@ Use \code{\link[=supportSensitivity]{supportSensitivity()}} for directional supp
 state agreement while preserving the complete primary comparison.
 Use \code{\link[=anchorTopology]{anchorTopology()}} with external optional sf geometry and a declared
 rectangle for descriptive reciprocal dominance fans and explicit eligibility.
+Use \code{\link[=compareGeometry]{compareGeometry()}} for polygon overlap and derived maximum-IoU matching,
+retaining molecule edges, geometry-only pairs and the original components.
 }
 \seealso{
 Useful links:

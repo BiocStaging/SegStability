@@ -6,6 +6,7 @@
 ^build-artifacts$
 ^\.github$
 ^\.lintr$
+^\.kilo$
 ^SegStability.*\.tar\.gz$
 ^SegStability.*\.Rcheck$
 ^.*\.BiocCheck$

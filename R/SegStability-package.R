@@ -21,6 +21,8 @@
 #' state agreement while preserving the complete primary comparison.
 #' Use [anchorTopology()] with external optional sf geometry and a declared
 #' rectangle for descriptive reciprocal dominance fans and explicit eligibility.
+#' Use [compareGeometry()] for polygon overlap and derived maximum-IoU matching,
+#' retaining molecule edges, geometry-only pairs and the original components.
 #'
 #' @keywords internal
 #' @md
