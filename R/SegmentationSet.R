@@ -93,8 +93,8 @@
 #'   is retained explicitly. Serialization uses standard R objects; no cross-R
 #'   binary compatibility guarantee is added.
 #' @seealso [SegmentationPartition()]
-#' @param molecules A S4Vectors DataFrame with unique lossless molecule_id and
-#'   character feature_id, in immutable universe order. Other columns are
+#' @param molecules A data.frame or DataFrame with unique lossless molecule_id
+#'   and character feature_id, in immutable universe order. Other columns are
 #'   retained.
 #' @param segmentations A uniquely named base list or S4Vectors SimpleList of
 #'   valid SegmentationPartition objects, with matching names and universe

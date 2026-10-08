@@ -20,8 +20,10 @@ Description: Provides infrastructure for descriptive segmentation-sensitivity
     windows, and direct polygon-overlap comparison with derived maximum-IoU
     matching preserving the primary molecule correspondence, and label-invariant
     stochastic replicate agreement with full-universe assignment-status
-    accounting and conditional partition agreement. Results do not rank
-    segmentation accuracy.
+    accounting and conditional partition agreement, and conservative optional
+    molecule-container ingestion and geometry interoperability with explicit
+    scientific identity and census evidence. Results do not rank segmentation
+    accuracy.
 License: Artistic-2.0
 Encoding: UTF-8
 biocViews: Spatial, Transcriptomics, SingleCell
@@ -35,7 +37,9 @@ Suggests:
     knitr,
     rmarkdown,
     bit64,
-    sf
+    sf,
+    MoleculeExperiment,
+    SpatialFeatureExperiment
 Config/testthat/edition: 3
 URL: https://github.com/ramakrishna-p21/SegStability
 BugReports: https://github.com/ramakrishna-p21/SegStability/issues

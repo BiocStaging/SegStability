@@ -23,6 +23,12 @@
 #' rectangle for descriptive reciprocal dominance fans and explicit eligibility.
 #' Use [compareGeometry()] for polygon overlap and derived maximum-IoU matching,
 #' retaining molecule edges, geometry-only pairs and the original components.
+#' Import retained original molecules and explicit assignments/full censuses
+#' with [fromMoleculeExperiment()]. Extract explicitly keyed optional geometry
+#' with [geometryFromSpatialFeatureExperiment()], preserving CRS and validation
+#' findings. SpatialExperiment cell/spot data cannot reconstruct molecule
+#' identity: supply explicitly mapped cell_id/state tables to [stateStability()]
+#' instead. Lost original molecule IDs are unsupported, never reconstructed.
 #'
 #' @keywords internal
 #' @md

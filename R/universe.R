@@ -1,4 +1,5 @@
 .prepareUniverse <- function(molecules) {
+    molecules <- .ingestionTable(molecules, "molecules")
     if (!methods::is(molecules, "DataFrame") ||
         !all(c("molecule_id", "feature_id") %in% colnames(molecules)) ||
         anyDuplicated(colnames(molecules))) {

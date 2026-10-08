@@ -29,6 +29,12 @@ Use \code{\link[=anchorTopology]{anchorTopology()}} with external optional sf ge
 rectangle for descriptive reciprocal dominance fans and explicit eligibility.
 Use \code{\link[=compareGeometry]{compareGeometry()}} for polygon overlap and derived maximum-IoU matching,
 retaining molecule edges, geometry-only pairs and the original components.
+Import retained original molecules and explicit assignments/full censuses
+with \code{\link[=fromMoleculeExperiment]{fromMoleculeExperiment()}}. Extract explicitly keyed optional geometry
+with \code{\link[=geometryFromSpatialFeatureExperiment]{geometryFromSpatialFeatureExperiment()}}, preserving CRS and validation
+findings. SpatialExperiment cell/spot data cannot reconstruct molecule
+identity: supply explicitly mapped cell_id/state tables to \code{\link[=stateStability]{stateStability()}}
+instead. Lost original molecule IDs are unsupported, never reconstructed.
 }
 \seealso{
 Useful links:
