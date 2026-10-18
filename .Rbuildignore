@@ -6,6 +6,12 @@
 ^build-artifacts$
 ^\.github$
 ^\.lintr$
+^LICENSE\.md$
+^\.gitignore$
+^\.aws$
+^\.codex$
+^\.agents$
+^\.kilocode$
 ^\.kilo$
 ^SegStability.*\.tar\.gz$
 ^SegStability.*\.Rcheck$
