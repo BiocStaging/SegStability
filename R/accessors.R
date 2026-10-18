@@ -80,6 +80,34 @@ methods::setMethod("[[", "SegmentationSet", function(x, i, j, ...) {
 
 #' @rdname SegmentationSet
 #' @export
+methods::setGeneric("assignmentData",
+    function(x, segmentation) methods::standardGeneric("assignmentData"))
+
+#' @rdname SegmentationSet
+#' @export
+methods::setMethod("assignmentData", "SegmentationSet",
+    function(x, segmentation) {
+        if (missing(segmentation)) {
+            stop("segmentation must be one exact existing segmentation name",
+                 call. = FALSE)
+        }
+        p <- x[[segmentation]]
+        ids <- p@cells$cell_id
+        # LLint forbids NA subscripts and subset replacement. Append one typed
+        # missing sentinel, then extract only nonmissing positional indices.
+        missing_id <- switch(.idFamily(ids), integer = NA_integer_,
+            character = NA_character_, LLint = S4Vectors::as.LLint(NA_character_),
+            integer64 = bit64::as.integer64(NA_character_))
+        index <- p@cell_index
+        index[is.na(index)] <- length(ids) + 1L
+        result <- S4Vectors::DataFrame(molecule_id = x@molecules$molecule_id,
+            status = assignmentStatus(p))
+        result$cell_id <- c(ids, missing_id)[index]
+        result
+    })
+
+#' @rdname SegmentationSet
+#' @export
 methods::setGeneric("segmentationNames",
     function(x) methods::standardGeneric("segmentationNames"))
 

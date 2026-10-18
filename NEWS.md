@@ -1,5 +1,7 @@
 # SegStability 0.99.0
 
+* Add owning-set `assignmentData()` readout with exact molecule IDs, semantic
+  statuses and native typed cell IDs in canonical universe order.
 * Add exact named retrieval of stored, universe-bound partitions with `[[`.
 
 * Add conditional MoleculeExperiment ingestion with original exact molecule IDs,

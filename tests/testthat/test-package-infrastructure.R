@@ -3,7 +3,7 @@ test_that("the namespace exposes exactly the WP11 public boundary", {
     exports <- getNamespaceExports("SegStability")
     public <- exports[!startsWith(exports, ".__")]
     expect_identical(sort(public), sort(c("SegmentationPartition", "cellCensus",
-        "assignmentStatus", "ambiguityData", "provenance", "runMetadata",
+        "assignmentData", "assignmentStatus", "ambiguityData", "provenance", "runMetadata",
         "show", "SegmentationSet", "segmentationNames", "segmentationInfo",
         "moleculeData", "featureData", "summary", "compareSegmentations",
         "correspondenceEdges", "cellSummary", "componentSummary",

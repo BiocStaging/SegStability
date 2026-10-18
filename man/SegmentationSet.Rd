@@ -7,6 +7,8 @@
 \alias{show,SegmentationSet-method}
 \alias{summary,SegmentationSet-method}
 \alias{[[,SegmentationSet-method}
+\alias{assignmentData}
+\alias{assignmentData,SegmentationSet-method}
 \alias{segmentationNames}
 \alias{segmentationNames,SegmentationSet-method}
 \alias{segmentationInfo}
@@ -32,6 +34,10 @@ SegmentationSet(
 \S4method{summary}{SegmentationSet}(object, ...)
 
 \S4method{[[}{SegmentationSet}(x, i, j, ...)
+
+assignmentData(x, segmentation)
+
+\S4method{assignmentData}{SegmentationSet}(x, segmentation)
 
 segmentationNames(x)
 
@@ -79,6 +85,8 @@ concepts receive explicit unknown placeholders, as for partitions.}
 \item{i}{One exact nonempty segmentation name for retrieval.}
 
 \item{j}{Not supported.}
+
+\item{segmentation}{One exact existing segmentation name.}
 }
 \value{
 SegmentationSet() returns a validated SegmentationSet.
@@ -93,6 +101,10 @@ provenance.
 \code{x[[name]]} returns the existing universe-bound partition after
 integrity checking. Only one exact character name is supported; partial
 or positional selection and replacement are not supported.
+assignmentData(x, segmentation) returns exactly molecule_id, semantic
+status and native typed cell_id in owning-universe order, one row per
+molecule. Unassigned and ambiguous cell IDs are typed missing; candidate
+evidence remains in ambiguityData(). Integrity is checked on read.
 summary() returns a SimpleList with specimen_id, n_molecules, n_features,
 n_segmentations and segmentations (the segmentationInfo() DataFrame).
 show() displays structural counts and names. Neither method compares cells.
@@ -175,6 +187,7 @@ ss <- SegmentationSet(molecules, list(native = p), "specimen1")
 ss
 segmentationNames(ss)
 ss[["native"]]
+assignmentData(ss, "native")
 segmentationInfo(ss)
 moleculeData(ss)
 featureData(ss)
