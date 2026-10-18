@@ -3,30 +3,21 @@ Type: Package
 Title: Descriptive Segmentation Sensitivity in Spatial Transcriptomics
 Version: 0.99.0
 Authors@R: person("Rama Krishna", "Pudota",
-    email = "ramakrishnapudota36@gmail.com", role = c("aut", "cre"))
-Description: Provides infrastructure for descriptive segmentation-sensitivity
-    analysis in molecule-resolved spatial transcriptomics. The intended analyses
-    compare alternative segmentations of the same immutable molecule universe
-    and describe effects on categorical cell-state conclusions. This initial
-    development version provides lossless universe identity and certified
-    segmentation partitions and shared-universe segmentation sets, complete
-    pairwise shared-molecule correspondence, directional dominance and
-    structural component summaries, and explicit validation reports for
-    scientific consistency, optional spatial inputs, integrity and provenance
-    completeness, and categorical state stability with explicit unresolved
-    evidence and full-population accounting, and directional support sensitivity
-    preserving original graph semantics and denominators, and optional spatial
-    reciprocal-anchor topology with explicit geometry eligibility and observation
-    windows, and direct polygon-overlap comparison with derived maximum-IoU
-    matching preserving the primary molecule correspondence, and label-invariant
-    stochastic replicate agreement with full-universe assignment-status
-    accounting and conditional partition agreement, and conservative optional
-    molecule-container ingestion and geometry interoperability with explicit
-    scientific identity and census evidence. Results do not rank segmentation
-    accuracy.
+    email = "ramakrishnapudota36@gmail.com", role = c("aut", "cre"),
+    comment = c(ORCID = "0009-0009-2804-8915"))
+Description: Quantifies correspondence between alternative cell segmentations
+    of the same molecule-resolved spatial transcriptomics experiment. Preserves
+    an immutable molecule universe, exact molecule identities, complete cell
+    censuses, and explicit assignment statuses when constructing weighted
+    shared-molecule graphs. Describes categorical cell-state stability,
+    directional support sensitivity, optional spatial topology and polygon
+    overlap, and agreement among stochastic segmentation runs. Results describe
+    sensitivity to segmentation choices and do not estimate segmentation
+    accuracy or establish biological ground truth.
 License: Artistic-2.0
 Encoding: UTF-8
-biocViews: Spatial, Transcriptomics, SingleCell
+Depends: R (>= 4.6.0)
+biocViews: Spatial, Transcriptomics, SingleCell, DataRepresentation
 Imports:
     methods,
     S4Vectors,
@@ -41,6 +32,7 @@ Suggests:
     MoleculeExperiment,
     SpatialFeatureExperiment
 Config/testthat/edition: 3
+VignetteBuilder: knitr
 URL: https://github.com/ramakrishna-p21/SegStability
 BugReports: https://github.com/ramakrishna-p21/SegStability/issues
 Config/roxygen2/version: 8.1.0
