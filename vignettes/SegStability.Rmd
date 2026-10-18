@@ -238,7 +238,8 @@ guarded example. Geometry does not establish molecule correspondence or
 registration on its own.
 
 The assignment workflow was also exercised on an explicitly qualified region
-of the Xenium mouse-brain data released with the [ovrlpy study](https://doi.org/10.1038/s41587-026-03004-8).
+of the Xenium mouse-brain data released with the
+[ovrlpy study](https://doi.org/10.1038/s41587-026-03004-8).
 Original molecule IDs and a source-defined universe were retained for two
 saved segmentation outputs. That application confirmed that the package can
 describe shared-molecule correspondence and directional support at larger

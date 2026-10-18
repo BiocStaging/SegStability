@@ -11,7 +11,8 @@
 #' \describe{
 #'   \item{molecules}{A data.frame with molecule_id, feature_id and toy x/y
 #'     coordinates. Row order defines the shared universe.}
-#'   \item{cells}{A named list of full cell-census data.frames, each with cell_id.}
+#'   \item{cells}{A named list of full cell-census data.frames, each with
+#'     cell_id.}
 #'   \item{assignments}{A named list of data.frames with molecule_id, status
 #'     and cell_id. Every molecule appears once on each side; unresolved cell_id
 #'     values are missing.}
