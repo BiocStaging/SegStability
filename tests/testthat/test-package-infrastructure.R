@@ -21,3 +21,9 @@ test_that("the S4 show generic is explicitly imported for minimal namespace load
     imports <- getNamespaceImports("SegStability")
     expect_true("show" %in% names(imports$methods))
 })
+
+test_that("exact partition retrieval is registered without replacement", {
+    method <- methods::getMethod("[[", "SegmentationSet")
+    expect_identical(names(formals(method)), c("x", "i", "j", "..."))
+    expect_false(methods::existsMethod("[[<-", "SegmentationSet"))
+})

@@ -48,6 +48,36 @@ methods::setGeneric("runMetadata",
 methods::setMethod("runMetadata", "SegmentationPartition",
     function(x) x@run_metadata)
 
+.segmentationSelector <- function(x, segmentation) {
+    if (!identical(class(segmentation), "character") ||
+        !is.null(dim(segmentation)) || !.scalarString(segmentation) ||
+        !segmentation %in% segmentationNames(x)) {
+        stop("segmentation must be one exact existing segmentation name",
+             call. = FALSE)
+    }
+    segmentation
+}
+
+#' @rdname SegmentationSet
+#' @export
+methods::setMethod("[[", "SegmentationSet", function(x, i, j, ...) {
+    if (missing(i)) {
+        stop("segmentation must be one exact existing segmentation name",
+             call. = FALSE)
+    }
+    dots <- list(...)
+    if (!missing(j) || (length(dots) &&
+        !identical(names(dots), "exact"))) {
+        stop("Unsupported retrieval argument", call. = FALSE)
+    }
+    if (length(dots) && !identical(dots$exact, TRUE)) {
+        stop("exact must be TRUE", call. = FALSE)
+    }
+    name <- .segmentationSelector(x, i)
+    .checkSetIntegrity(x)
+    x@segmentations[[name]]
+})
+
 #' @rdname SegmentationSet
 #' @export
 methods::setGeneric("segmentationNames",

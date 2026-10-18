@@ -1,5 +1,7 @@
 # SegStability 0.99.0
 
+* Add exact named retrieval of stored, universe-bound partitions with `[[`.
+
 * Add conditional MoleculeExperiment ingestion with original exact molecule IDs,
   explicit assignments and full censuses, plus explicitly keyed
   SpatialFeatureExperiment geometry sidecars. Preserve ambiguity, coordinates,
