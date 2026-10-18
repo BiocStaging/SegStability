@@ -6,51 +6,41 @@
 \alias{SegStability-package}
 \title{Descriptive segmentation sensitivity in spatial transcriptomics}
 \description{
-Infrastructure for comparing segmentations of an immutable molecule universe.
-Create universe-bound assignments with \code{\link[=SegmentationPartition]{SegmentationPartition()}} and inspect
-the full census, semantic statuses and retained ambiguity through its
-accessors.
-Bind named partitions to one shared universe with \code{\link[=SegmentationSet]{SegmentationSet()}} and
-inspect molecule/feature data and segmentation information.
-Use \code{\link[=compareSegmentations]{compareSegmentations()}} for complete shared-molecule correspondence,
-independent assigned denominators, directional dominance and components
-including isolates. Inspect results with \code{\link[=correspondenceEdges]{correspondenceEdges()}},
-\code{\link[=cellSummary]{cellSummary()}}, \code{\link[=componentSummary]{componentSummary()}} and \code{\link[=assignmentSummary]{assignmentSummary()}}.
-Inspect scientific consistency and integrity with \code{\link[=validateSegmentation]{validateSegmentation()}}
-and \code{\link[=validateSegmentationSet]{validateSegmentationSet()}}, metadata with \code{\link[=validateProvenance]{validateProvenance()}}, and
-spatial inputs with \code{\link[=validateCoordinates]{validateCoordinates()}} and \code{\link[=validateGeometry]{validateGeometry()}}.
-Validation reports preserve unknown evidence and never repair input.
-Supply external categorical labels to \code{\link[=stateStability]{stateStability()}} to describe
-same-state, different-state and unresolved mass across the complete graph,
-retaining full census cells and independent assigned denominators.
-Use \code{\link[=supportSensitivity]{supportSensitivity()}} for directional support retention and optional
-state agreement while preserving the complete primary comparison.
-Use \code{\link[=anchorTopology]{anchorTopology()}} with external optional sf geometry and a declared
-rectangle for descriptive reciprocal dominance fans and explicit eligibility.
-Use \code{\link[=compareGeometry]{compareGeometry()}} for polygon overlap and derived maximum-IoU matching,
-retaining molecule edges, geometry-only pairs and the original components.
-Import retained original molecules and explicit assignments/full censuses
-with \code{\link[=fromMoleculeExperiment]{fromMoleculeExperiment()}}. Extract explicitly keyed optional geometry
-with \code{\link[=geometryFromSpatialFeatureExperiment]{geometryFromSpatialFeatureExperiment()}}, preserving CRS and validation
-findings. SpatialExperiment cell/spot data cannot reconstruct molecule
-identity: supply explicitly mapped cell_id/state tables to \code{\link[=stateStability]{stateStability()}}
-instead. Lost original molecule IDs are unsupported, never reconstructed.
+SegStability compares alternative cell segmentations of one immutable
+molecule universe. \code{\link[=SegmentationPartition]{SegmentationPartition()}} records each full cell census
+and the assigned, unassigned or ambiguous status of every molecule.
+\code{\link[=SegmentationSet]{SegmentationSet()}} binds named partitions to the shared universe; retrieve
+one with \code{ss[["name"]]} and read keyed assignments with \code{\link[=assignmentData]{assignmentData()}}.
+}
+\details{
+\code{\link[=compareSegmentations]{compareSegmentations()}} builds the complete shared-molecule graph with
+independent assigned denominators. Its edge, cell, component and status
+summaries retain empty cells and exact dominance ties. \code{\link[=stateStability]{stateStability()}}
+uses separately supplied categorical labels. \code{\link[=supportSensitivity]{supportSensitivity()}}
+describes directional edge retention without changing the primary graph.
+Optional \code{\link[=anchorTopology]{anchorTopology()}} and \code{\link[=compareGeometry]{compareGeometry()}} use qualified spatial
+evidence; \code{\link[=replicateAgreement]{replicateAgreement()}} compares runs through molecule identity.
+
+\code{\link[=fromMoleculeExperiment]{fromMoleculeExperiment()}} and
+\code{\link[=geometryFromSpatialFeatureExperiment]{geometryFromSpatialFeatureExperiment()}} accept explicit IDs and mappings
+from optional Bioconductor containers. Validation functions report missing
+evidence without inferring provenance or repairing inputs. Results are
+descriptive and do not rank segmentation accuracy or biological truth.
+}
+\examples{
+data("segmentationExample", package = "SegStability")
+names(segmentationExample)
+head(segmentationExample$assignments$first, 3)
 }
 \seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/ramakrishna-p21/SegStability}
-  \item Report bugs at \url{https://github.com/ramakrishna-p21/SegStability/issues}
-}
-
+\link{segmentationExample}
 }
 \author{
-\strong{Maintainer}: Rama Krishna Pudota \email{ramakrishnapudota36@gmail.com}
+\strong{Maintainer}: Rama Krishna Pudota \email{ramakrishnapudota36@gmail.com} (\href{https://orcid.org/0009-0009-2804-8915}{ORCID})
 
 Authors:
 \itemize{
-  \item Rama Krishna Pudota \email{ramakrishnapudota36@gmail.com}
+  \item Rama Krishna Pudota \email{ramakrishnapudota36@gmail.com} (\href{https://orcid.org/0009-0009-2804-8915}{ORCID})
 }
 
 }
-\keyword{internal}
