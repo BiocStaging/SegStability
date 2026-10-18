@@ -1,5 +1,7 @@
 # SegStability 0.99.0
 
+* Reduce support component materialization overhead while preserving all public
+  schemas, values, types, ordering and complete-graph scientific semantics.
 * Expose exact stored coordinate declarations in set and comparison summaries,
   including partial and unknown declarations without spatial prerequisites.
 * Add owning-set `assignmentData()` readout with exact molecule IDs, semantic
