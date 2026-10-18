@@ -258,7 +258,9 @@
 #'   the two names in comparison order; provenance() returns a SimpleList with
 #'   set and named segmentations entries. summary() returns a SimpleList with
 #'   segmentation_names, universe_size, cell_summary_1, cell_summary_2,
-#'   components and assignment_summary. show() displays structural counts.
+#'   components, assignment_summary and coordinate_info. The coordinate record
+#'   is returned unchanged, including unknowns, without validation, completion
+#'   or spatial prerequisites. show() displays structural counts.
 #' @seealso [compareSegmentations()], [SegmentationSet()]
 #' @examples
 #' m <- S4Vectors::DataFrame(molecule_id = c("m1", "m2"),
@@ -310,5 +312,6 @@ methods::setMethod("summary", "SegmentationComparison", function(object, ...) {
         universe_size = object@universe_size,
         cell_summary_1 = object@cell_summary_1,
         cell_summary_2 = object@cell_summary_2, components = object@components,
-        assignment_summary = object@assignment_summary)
+        assignment_summary = object@assignment_summary,
+        coordinate_info = object@coordinate_info)
 })

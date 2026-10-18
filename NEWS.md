@@ -1,5 +1,7 @@
 # SegStability 0.99.0
 
+* Expose exact stored coordinate declarations in set and comparison summaries,
+  including partial and unknown declarations without spatial prerequisites.
 * Add owning-set `assignmentData()` readout with exact molecule IDs, semantic
   statuses and native typed cell IDs in canonical universe order.
 * Add exact named retrieval of stored, universe-bound partitions with `[[`.

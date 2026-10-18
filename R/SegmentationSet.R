@@ -128,7 +128,9 @@
 #'   molecule. Unassigned and ambiguous cell IDs are typed missing; candidate
 #'   evidence remains in ambiguityData(). Integrity is checked on read.
 #'   summary() returns a SimpleList with specimen_id, n_molecules, n_features,
-#'   n_segmentations and segmentations (the segmentationInfo() DataFrame).
+#'   n_segmentations, segmentations (the segmentationInfo() DataFrame), and
+#'   coordinate_info (the exact stored declaration, including unknowns, without
+#'   validation, completion or spatial prerequisites).
 #'   show() displays structural counts and names. Neither method compares cells.
 #'   runMetadata(), cellCensus(), assignmentStatus() and ambiguityData() remain
 #'   partition accessors.
@@ -237,5 +239,6 @@ methods::setMethod("summary", "SegmentationSet", function(object, ...) {
         n_molecules = nrow(object@molecules),
         n_features = nrow(object@features),
         n_segmentations = length(object@segmentations),
-        segmentations = segmentationInfo(object))
+        segmentations = segmentationInfo(object),
+        coordinate_info = object@coordinate_info)
 })

@@ -56,7 +56,9 @@ and assignmentSummary() return DataFrames. segmentationNames() returns
 the two names in comparison order; provenance() returns a SimpleList with
 set and named segmentations entries. summary() returns a SimpleList with
 segmentation_names, universe_size, cell_summary_1, cell_summary_2,
-components and assignment_summary. show() displays structural counts.
+components, assignment_summary and coordinate_info. The coordinate record
+is returned unchanged, including unknowns, without validation, completion
+or spatial prerequisites. show() displays structural counts.
 }
 \description{
 Represent a complete positive shared-molecule graph, independent assigned

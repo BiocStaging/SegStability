@@ -106,7 +106,9 @@ status and native typed cell_id in owning-universe order, one row per
 molecule. Unassigned and ambiguous cell IDs are typed missing; candidate
 evidence remains in ambiguityData(). Integrity is checked on read.
 summary() returns a SimpleList with specimen_id, n_molecules, n_features,
-n_segmentations and segmentations (the segmentationInfo() DataFrame).
+n_segmentations, segmentations (the segmentationInfo() DataFrame), and
+coordinate_info (the exact stored declaration, including unknowns, without
+validation, completion or spatial prerequisites).
 show() displays structural counts and names. Neither method compares cells.
 runMetadata(), cellCensus(), assignmentStatus() and ambiguityData() remain
 partition accessors.

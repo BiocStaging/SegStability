@@ -13,7 +13,8 @@ test_that("the frozen class and internal constructor represent census isolates",
     expect_error(cellSummary(x, "missing"), "segmentation")
     expect_error(cellSummary(x, c("left", "right")), "segmentation")
     expect_identical(names(summary(x)), c("segmentation_names", "universe_size",
-        "cell_summary_1", "cell_summary_2", "components", "assignment_summary"))
+        "cell_summary_1", "cell_summary_2", "components", "assignment_summary",
+        "coordinate_info"))
     expect_output(show(x), "SegmentationComparison")
     file <- tempfile(fileext = ".rds")
     on.exit(unlink(file))
