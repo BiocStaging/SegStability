@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .topologyRequire <- function(report) {
     failed <- report$status != "PASS"
     if (any(failed)) {

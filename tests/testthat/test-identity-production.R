@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("production identity paths preserve all Gate D families exactly", {
     kinds <- c("integer", "character", "LLint", "integer64")
     for (kind in kinds) {

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("summaries expose exact stored coordinate declarations without gates", {
     records <- list(S4Vectors::SimpleList(),
         S4Vectors::SimpleList(units = "micrometres", origin = NA_character_,

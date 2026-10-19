@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("historical portability missing endpoint mass stays unresolved", {
     # 144 portability: two 60/40 edges, one unavailable native endpoint.
     r <- wp06_result(matrix(c(60L, 40L), 2, 1), c("s", NA_character_), "s")

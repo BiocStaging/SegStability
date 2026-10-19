@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("historical reciprocal fan fixtures retain exact frozen class literals", {
     skip_if_not_installed("sf")
     # 136 validation.json and 144 portability oracle; no historical code copied.

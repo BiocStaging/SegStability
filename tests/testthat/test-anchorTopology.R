@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("anchorTopology has exactly the frozen public signature", {
     expect_identical(names(formals(anchorTopology)),
                      c("comparison", "geometry", "window", "coordinate_info"))

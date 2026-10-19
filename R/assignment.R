@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .canonicalStatus <- function(status) {
     if (!identical(class(status), "character") || anyNA(status) ||
         any(!status %in% c("assigned", "unassigned", "ambiguous"))) {

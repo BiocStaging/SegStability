@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("the approved adapter functions exist with exact interfaces", {
     expect_true(is.function(fromMoleculeExperiment))
     expect_identical(names(formals(fromMoleculeExperiment)), c("object", "assay",

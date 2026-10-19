@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 ## Version 1: length-framed fields with explicit family and missingness tags.
 ## Canonical text uses UTF-8 without normalization; byte-marked IDs stay bytes.
 ## Ancillary metadata/provenance are deliberately outside identity binding.

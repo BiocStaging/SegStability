@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 wp11_ids <- function(kind = "character") {
     text <- c("9007199254740992", "9007199254740993", "9223372036854775807")
     switch(kind, character = c("001", " 1 ", "e\u0301"), integer = 1:3,

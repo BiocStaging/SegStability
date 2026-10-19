@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .ingestionTable <- function(x, label) {
     if (methods::is(x, "DataFrame")) return(x)
     if (!inherits(x, "data.frame") || inherits(x, "sf")) {

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .prepareUniverse <- function(molecules) {
     molecules <- .ingestionTable(molecules, "molecules")
     if (!methods::is(molecules, "DataFrame") ||

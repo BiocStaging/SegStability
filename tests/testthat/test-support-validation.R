@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("support rejects invalid thresholds and directions without coercion", {
     cmp <- wp04_compare()
     bad <- list(NULL, numeric(), TRUE, "0.1", NA_real_, NaN, Inf, -.1, 1.1,

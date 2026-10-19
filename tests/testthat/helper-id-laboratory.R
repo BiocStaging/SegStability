@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 # Test-only acceptance probe; this is not a production ID utility or API.
 id_lab_validate <- function(x) {
     kind <- as.character(class(x))

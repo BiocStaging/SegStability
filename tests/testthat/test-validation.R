@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("reports have the exact schema and strict error policy", {
     p <- wp02_partition()
     before <- serialize(p, NULL)

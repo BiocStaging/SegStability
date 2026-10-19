@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("saved sets expose exact named bound partitions", {
     x <- wp03_set()
     before <- serialize(x, NULL)

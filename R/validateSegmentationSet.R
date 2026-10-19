@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 #' Validate a shared-universe segmentation set explicitly
 #'
 #' Checks exact identity, feature mapping, full partition binding and

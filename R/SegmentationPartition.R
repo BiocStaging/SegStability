@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .scalarString <- function(x) {
     is.character(x) && length(x) == 1L && !is.na(x) && nzchar(x)
 }

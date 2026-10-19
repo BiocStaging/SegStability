@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("assignment utilities retain exact status and cell semantics", {
     s <- .canonicalStatus(c("assigned", "unassigned", "ambiguous"))
     expect_identical(s, 1:3)

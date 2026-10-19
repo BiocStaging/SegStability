@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 # Independent small-fixture accounting: ordinary tables, no production reducers.
 corrective_support_ratio <- function(a, b) {
     as.numeric(ifelse(b > 0, a / b, NA_real_))

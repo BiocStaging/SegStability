@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 #' @rdname SegmentationPartition
 #' @export
 methods::setGeneric("cellCensus",

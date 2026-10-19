@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("historical contingency fixtures retain graph and dominance semantics", {
     # Validated matrices from 136/144; topology expectations are not ported.
     cases <- list(identity = diag(c(60L, 40L)), split = matrix(c(60L, 40L), 1L),

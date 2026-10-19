@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .geometryAvailable <- function() requireNamespace("sf", quietly = TRUE)
 
 .geometryCellChecks <- function(geometry, idx, check) {

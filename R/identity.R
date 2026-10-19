@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 ## Scientific IDs retain their family; keys are only for certified exact paths.
 .idFamily <- function(x, label = "ID") {
     kind <- as.character(class(x))
@@ -10,8 +11,11 @@
     if (identical(kind, "LLint") && methods::is(x, "LLint")) {
         return("LLint")
     }
-    if (identical(kind, "integer64") && typeof(x) == "double" &&
-        requireNamespace("bit64", quietly = TRUE)) {
+    if (identical(kind, "integer64") && typeof(x) == "double") {
+        if (!requireNamespace("bit64", quietly = TRUE)) {
+            stop(label, ": install the optional 'bit64' package to use integer64 IDs",
+                 call. = FALSE)
+        }
         return("integer64")
     }
     stop(label, ": unsupported ID representation", call. = FALSE)

@@ -12,3 +12,6 @@
   with `assignmentData(set, "name")`, and inspect stored coordinate declarations
   with `summary(set)$coordinate_info` or
   `summary(comparison)$coordinate_info`.
+* Add a small, source-checked ovrlpy/Xenium validation summary and optional
+  development-time replay scripts; no real-data acquisition runs during package
+  installation, examples, tests, vignettes, or checks.

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("matching maximizes actual IoU before applying exact ties", {
     cases <- list(
         c(.5, .5, .5, .5),

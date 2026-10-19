@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("support signature, defaults and direction-major order are exact", {
     expect_identical(names(formals(supportSensitivity)),
                      c("comparison", "thresholds", "direction", "states"))

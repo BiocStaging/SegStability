@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("missing and ineligible geometry retain all cells and molecule edges", {
     skip_if_not_installed("sf")
     cmp <- wp04_compare(diag(2L, 3))

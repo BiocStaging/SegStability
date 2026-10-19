@@ -21,13 +21,13 @@ Bioconductor devel release installed, the public source repository can be
 installed with:
 
 ```r
+install.packages(c("BiocManager", "remotes"))
 BiocManager::install(c("S4Vectors", "BiocStyle"))
 remotes::install_github("ramakrishna-p21/SegStability", build_vignettes = TRUE)
 ```
 
-The `remotes` package is needed for `install_github()`; install it first if
-necessary. Optional spatial and container adapters have their own suggested
-dependencies.
+`BiocStyle` installs the vignette-building packages `knitr` and `rmarkdown`.
+Optional spatial and container adapters have their own suggested dependencies.
 
 ## A small example
 
@@ -77,6 +77,12 @@ adapters require explicit identity, census, and geometry mappings.
 These results describe sensitivity. They do not estimate segmentation
 accuracy, recover lost molecule IDs, or select a biologically correct
 segmentation.
+
+A [small validation record](inst/extdata/validation/ovrlpy_validation_summary.csv)
+and [development-time preparation](inst/scripts/prepare_ovrlpy_validation.py)
+and [replay](inst/scripts/reproduce_ovrlpy_validation.R) scripts document a
+qualified vendor/Baysor Xenium application. The large public source files are
+not bundled.
 
 ## Documentation and support
 

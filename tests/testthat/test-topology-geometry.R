@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("whole polygon bboxes distinguish interior from touching crossing and outside", {
     skip_if_not_installed("sf")
     cmp <- wp04_compare(matrix(3, 1, 1))

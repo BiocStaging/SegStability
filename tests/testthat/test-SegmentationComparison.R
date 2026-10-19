@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("the frozen class and internal constructor represent census isolates", {
     args <- wp04_class_input()
     x <- do.call(SegStability:::.newComparison, args)

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("set owns the frozen universe and preserves independent partitions", {
     x <- wp03_set()
     expect_s4_class(x, "SegmentationSet")

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("typed cell identities and row permutations are exact", {
     skip_if_not_installed("sf")
     ids <- list(1:2, c("001", "1"),

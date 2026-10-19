@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("assignmentData reconstructs canonical typed membership without mutation", {
     for (mkind in c("integer", "character", "LLint", "integer64")) {
         if (mkind == "integer64" && !requireNamespace("bit64", quietly = TRUE)) next

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("run-local labels census order and molecule input order do not change results", {
     reference <- replicateAgreement(wp10_set(), c("run_a", "run_b"))
     for (kind in c("integer", "character", "LLint", "integer64")) {
