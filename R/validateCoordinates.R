@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .coordinateShape <- function(field, x) {
     if (field %in% c("units", "specimen_id", "crs")) {
         return(is.character(x) && !is.object(x) && length(x) == 1L &&

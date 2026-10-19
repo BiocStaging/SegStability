@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("comparison scientific tables require unambiguous column names", {
     cmp <- wp04_compare()
     states <- wp06_states(cmp, c("s", "t"), c("s", "t"))

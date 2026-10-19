@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("historical 60/40 support cost remains over original population", {
     cmp <- wp04_compare(matrix(c(60L, 40L), 1L))
     out <- supportSensitivity(cmp, .5, "left",

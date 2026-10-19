@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .provenanceFields <- function() {
     c("source", "source_version", "retrieval_date", "source_hashes",
       "software", "software_version", "software_hashes", "command",

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 wp06_states <- function(cmp, left, right) {
     maps <- list(left, right)
     for (i in seq_along(maps)) {

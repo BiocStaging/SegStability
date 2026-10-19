@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .supportRequire <- function(report) {
     blocked <- report$status %in% c("FAIL", "UNKNOWN")
     if (any(blocked)) {

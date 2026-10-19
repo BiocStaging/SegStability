@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("universe fingerprints are deterministic, typed and order-sensitive", {
     make <- function(ids, features = rep("g", length(ids))) {
         .prepareUniverse(S4Vectors::DataFrame(

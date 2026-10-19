@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .stateRequire <- function(report) {
     failed <- report$status != "PASS"
     if (any(failed)) {

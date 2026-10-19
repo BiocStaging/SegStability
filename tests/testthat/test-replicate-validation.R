@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("replicate input selectors fail loudly without convenience coercion", {
     x <- wp10_set()
     for (nm in list(character(), "run_a", c("run_a", "run_a"),

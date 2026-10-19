@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 ## Scientific IDs retain their family; keys are only for certified exact paths.
 .idFamily <- function(x, label = "ID") {
     kind <- as.character(class(x))

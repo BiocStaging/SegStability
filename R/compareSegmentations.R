@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .sharedPairs <- function(p1, p2) {
     # Alignment was certified at construction; these are positional indices.
     both <- which(p1@status == 1L & p2@status == 1L)

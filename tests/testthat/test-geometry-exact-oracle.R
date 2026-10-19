@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 # Independently enumerated with Python fractions.Fraction.from_float.
 # Exact rational objectives of the unmodified binary doubles, no tolerance.
 test_that("exact rational tiny-graph oracle distinguishes rounded totals", {

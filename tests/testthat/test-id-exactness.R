@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 for (kind in c("integer", "character", "LLint", "integer64")) {
     local({
         representation <- kind

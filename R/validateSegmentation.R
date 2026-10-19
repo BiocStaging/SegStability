@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .partitionValidation <- function(object, check_integrity) {
     input <- .validationCheck("segmentation.input",
         if (methods::is(object, "SegmentationPartition")) TRUE else

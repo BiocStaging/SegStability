@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .validationReport <- function(check, status, severity = "note", message) {
     S4Vectors::DataFrame(check = check, status = status, severity = severity,
                         message = message)

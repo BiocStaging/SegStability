@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .exactCounts <- function(x) {
     (is.integer(x) || identical(class(x), "numeric")) &&
         !anyNA(x) && all(is.finite(x) & x >= 0 & x <= 2^53 & x == floor(x))

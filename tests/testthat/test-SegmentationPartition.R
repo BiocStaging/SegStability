@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("partition stores the frozen structure and exposes semantic accessors", {
     p <- wp02_partition()
     expect_s4_class(p, "SegmentationPartition")

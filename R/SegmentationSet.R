@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .partitionBindingProblems <- function(partition, n, fingerprint, version,
                                       algorithm) {
     if (!methods::is(partition, "SegmentationPartition")) {

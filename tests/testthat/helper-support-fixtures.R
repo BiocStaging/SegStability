@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 wp07_state_fields <- function() {
     c("resolved_mass", "same_state_mass", "different_state_mass",
       "unresolved_label_mass", "conditional_stability",

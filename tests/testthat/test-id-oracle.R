@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 # Identity cases ported from scripts/144_validate_final_portability_cases.py
 # (key(), lines 20-23; __main__, lines 73-76 and 84-85). No graph logic is ported.
 test_that("historical integer, large, character and UUID identities remain exact", {

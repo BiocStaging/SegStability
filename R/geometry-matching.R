@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 # Error-free floating expansions compare sums of the supplied binary doubles.
 # A rounded scalar sum can conceal a real improvement smaller than its ULP.
 .geometryExactAdd <- function(x, y) {

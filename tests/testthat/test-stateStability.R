@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("all five categorical endpoint cases are distinct", {
     labels <- list(c("s", "s"), c("s", "t"), c("s", NA_character_),
                    c(NA_character_, "s"), rep(NA_character_, 2))

@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("empty coordinate declarations retain unknown semantics", {
     expect_silent(SegStability:::.adapterSpecimen(S4Vectors::SimpleList(), "roi"))
     expect_error(SegStability:::.adapterSpecimen(

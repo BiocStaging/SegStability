@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 wp09_geometry <- function(cmp, left, right) {
     shapes <- list(left, right)
     out <- lapply(1:2, function(i) {

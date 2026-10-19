@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("absent geometry and unavailable sf remain explicitly unchecked", {
     cells <- S4Vectors::DataFrame(cell_id = "a")
     expect_identical(validation_row(validateGeometry(NULL, cells),

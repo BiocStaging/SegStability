@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 .replicateChoose2 <- function(n) {
     # Each count and their total are bounded by the integer-index universe.
     # Even n*(n-1) fits signed LLint at that limit; the sum fits choose(N,2).

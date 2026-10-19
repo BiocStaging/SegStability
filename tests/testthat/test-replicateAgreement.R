@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("replicateAgreement exposes exactly the approved signature and schema", {
     expect_true("replicateAgreement" %in% getNamespaceExports("SegStability"))
     expect_identical(names(formals(replicateAgreement)), c("object", "segmentations"))

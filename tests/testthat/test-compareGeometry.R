@@ -1,3 +1,4 @@
+# Assisted-by: OpenAI Codex
 test_that("the geometry API and exact overlap quantities are explicit", {
     skip_if_not_installed("sf")
     expect_identical(names(formals(compareGeometry)),
