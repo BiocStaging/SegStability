@@ -106,6 +106,26 @@ test_that("integer64 needs explicit ordering and exact assertions", {
     }
 })
 
+test_that("ID families keep their behavior and missing bit64 is actionable", {
+    expect_identical(.idFamily(1L), "integer")
+    expect_identical(.idFamily("1"), "character")
+    expect_identical(.idFamily(S4Vectors::as.LLint("1")), "LLint")
+
+    integer64 <- structure(1, class = "integer64")
+    if (requireNamespace("bit64", quietly = TRUE)) {
+        integer64 <- bit64::as.integer64("1")
+        expect_identical(.idFamily(integer64), "integer64")
+    }
+
+    without_bit64 <- .idFamily
+    lookup <- new.env(parent = environment(.idFamily))
+    lookup$requireNamespace <- function(package, quietly = FALSE) FALSE
+    environment(without_bit64) <- lookup
+    expect_error(without_bit64(integer64, "molecule_id"),
+                 "molecule_id: install the optional 'bit64' package to use integer64 IDs",
+                 fixed = TRUE)
+})
+
 test_that("LLint exact assertions distinguish adjacent values", {
     x <- id_lab_fixture("LLint")$x
     expect_failure(expect_equal(x[1L], x[2L]))
