@@ -3,3 +3,17 @@ SegStability*.Rcheck/
 *.BiocCheck/
 .dependency-install.log
 .verification*
+logs/
+build-artifacts/
+docs/implementation/
+CURRENT_STATUS.md
+CODEX_START_HERE.md
+AGENTS.md
+.lintr
+.github/workflows/lint.yml
+docs/
+.aws/
+.codex/
+.agents/
+.kilo/
+.kilocode/

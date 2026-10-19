@@ -48,6 +48,64 @@ methods::setGeneric("runMetadata",
 methods::setMethod("runMetadata", "SegmentationPartition",
     function(x) x@run_metadata)
 
+.segmentationSelector <- function(x, segmentation) {
+    if (!identical(class(segmentation), "character") ||
+        !is.null(dim(segmentation)) || !.scalarString(segmentation) ||
+        !segmentation %in% segmentationNames(x)) {
+        stop("segmentation must be one exact existing segmentation name",
+             call. = FALSE)
+    }
+    segmentation
+}
+
+#' @rdname SegmentationSet
+#' @export
+methods::setMethod("[[", "SegmentationSet", function(x, i, j, ...) {
+    if (missing(i)) {
+        stop("segmentation must be one exact existing segmentation name",
+             call. = FALSE)
+    }
+    dots <- list(...)
+    if (!missing(j) || (length(dots) &&
+        !identical(names(dots), "exact"))) {
+        stop("Unsupported retrieval argument", call. = FALSE)
+    }
+    if (length(dots) && !identical(dots$exact, TRUE)) {
+        stop("exact must be TRUE", call. = FALSE)
+    }
+    name <- .segmentationSelector(x, i)
+    .checkSetIntegrity(x)
+    x@segmentations[[name]]
+})
+
+#' @rdname SegmentationSet
+#' @export
+methods::setGeneric("assignmentData",
+    function(x, segmentation) methods::standardGeneric("assignmentData"))
+
+#' @rdname SegmentationSet
+#' @export
+methods::setMethod("assignmentData", "SegmentationSet",
+    function(x, segmentation) {
+        if (missing(segmentation)) {
+            stop("segmentation must be one exact existing segmentation name",
+                 call. = FALSE)
+        }
+        p <- x[[segmentation]]
+        ids <- p@cells$cell_id
+        # LLint forbids NA subscripts and subset replacement. Append one typed
+        # missing sentinel, then extract only nonmissing positional indices.
+        missing_id <- switch(.idFamily(ids), integer = NA_integer_,
+            character = NA_character_, LLint = S4Vectors::as.LLint(NA_character_),
+            integer64 = bit64::as.integer64(NA_character_))
+        index <- p@cell_index
+        index[is.na(index)] <- length(ids) + 1L
+        result <- S4Vectors::DataFrame(molecule_id = x@molecules$molecule_id,
+            status = assignmentStatus(p))
+        result$cell_id <- c(ids, missing_id)[index]
+        result
+    })
+
 #' @rdname SegmentationSet
 #' @export
 methods::setGeneric("segmentationNames",

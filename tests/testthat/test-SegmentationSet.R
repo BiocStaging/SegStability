@@ -99,7 +99,7 @@ test_that("public set data, nested run metadata and structural methods are lossl
     s <- summary(x)
     expect_s4_class(s, "SimpleList")
     expect_identical(names(s), c("specimen_id", "n_molecules", "n_features",
-        "n_segmentations", "segmentations"))
+        "n_segmentations", "segmentations", "coordinate_info"))
     expect_identical(s$n_molecules, 3L)
     expect_identical(s$n_features, 2L)
     expect_identical(s$n_segmentations, 2L)

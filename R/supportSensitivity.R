@@ -157,6 +157,63 @@
     out
 }
 
+.supportComponentSummary <- function(cells, groups, states_supplied) {
+    columns <- as.list(cells)
+    n <- length(groups)
+    mass <- function(field) {
+        values <- columns[[field]]
+        unname(vapply(groups, function(i) .countTotal(values[i]), numeric(1)))
+    }
+    count <- function(values) {
+        unname(vapply(groups, function(i) as.integer(sum(values[i])), integer(1)))
+    }
+    m <- mass("selected_retained_mass")
+    assigned <- mass("assigned_mass")
+    matched <- mass("matched_mass")
+    out <- list(original_edges = count(columns$partner_count),
+        retained_edges = count(columns$selected_edge_count),
+        removed_edges = count(columns$selected_removed_edge_count),
+        original_matched_mass = matched, retained_mass = m,
+        excluded_matched_mass = mass("selected_removed_mass"),
+        retained_mass_fraction = .stateRatio(m, matched),
+        assigned_mass = assigned, unmatched_mass = mass("unmatched_mass"),
+        retained_assigned_fraction = .stateRatio(m, assigned),
+        n_cells = unname(lengths(groups)),
+        zero_molecule_cells = count(columns$assigned_mass == 0),
+        zero_correspondence_cells = count(columns$matched_mass == 0),
+        retained_cells = count(columns$selected_retained_mass > 0),
+        selected_zero_correspondence_cells =
+            count(columns$selected_retained_mass == 0))
+    fields <- c("resolved_mass", "same_state_mass", "different_state_mass",
+        "unresolved_label_mass", "endpoint_unavailable_cells",
+        "total_estimable_cells", "total_nonestimable_cells",
+        "conditional_estimable_cells", "conditional_nonestimable_cells")
+    for (field in fields) {
+        out[[field]] <- if (states_supplied) mass(paste0("selected_", field)) else
+            rep(NA_real_, n)
+    }
+    out$conditional_stability <- if (states_supplied) {
+        .stateRatio(out$same_state_mass, out$resolved_mass)
+    } else rep(NA_real_, n)
+    out$same_state_fraction_of_matched_mass <-
+        .stateRatio(out$same_state_mass, m)
+    out$total_mass_stability <- .stateRatio(out$same_state_mass, assigned)
+    for (kind in c("total_mass", "conditional")) {
+        eligible <- if (kind == "total_mass") columns$assigned_mass > 0 else
+            !is.na(columns$selected_resolved_mass) &
+                columns$selected_resolved_mass > 0
+        values <- columns[[paste0("selected_", kind, "_stability")]]
+        out[[paste0("mean_cell_", kind, "_stability")]] <-
+            if (states_supplied) {
+                unname(vapply(groups, function(i) {
+                    selected <- i[eligible[i]]
+                    if (length(selected)) mean(values[selected]) else NA_real_
+                }, numeric(1)))
+            } else rep(NA_real_, n)
+    }
+    out
+}
+
 .supportComponents <- function(comparison, cells, states_supplied) {
     out <- comparison@components
     n <- nrow(out)
@@ -164,12 +221,10 @@
         c <- cells[[side]]
         groups <- split(seq_len(nrow(c)), factor(c$component_id,
                                                 levels = seq_len(n)))
-        rows <- lapply(groups, function(i) {
-            .supportSummary(c[i, ], states_supplied)
-        })
-        table <- if (length(rows)) do.call(rbind, rows) else
-            .supportSummary(c[integer(), ], states_supplied)[integer(), ]
-        for (field in colnames(table)) {
+        # Reduce aligned vectors within the original groups, including groups
+        # with no cells on this side, before materializing any component columns.
+        table <- .supportComponentSummary(c, groups, states_supplied)
+        for (field in names(table)) {
             out[[paste0("selected_", field, "_", side)]] <- table[[field]]
         }
         out[[paste0("assigned_mass_", side)]] <- table$assigned_mass

@@ -106,7 +106,11 @@
 #' @param metadata S4Vectors SimpleList of ancillary set metadata.
 #' @param x A SegmentationSet.
 #' @param object A SegmentationSet to display or summarize.
-#' @param ... Additional arguments to summary; currently unused.
+#' @param segmentation One exact existing segmentation name.
+#' @param i One exact nonempty segmentation name for retrieval.
+#' @param j Not supported.
+#' @param ... Additional arguments to summary (unused), or only
+#'   \code{exact = TRUE} for retrieval.
 #' @return SegmentationSet() returns a validated SegmentationSet.
 #'   segmentationNames() returns names in collection order. segmentationInfo()
 #'   returns a DataFrame with name, n_cells, n_molecules and a run_metadata list
@@ -116,8 +120,17 @@
 #'   feature_id and ancillary columns, without internal indices. featureData()
 #'   returns the feature dictionary DataFrame. provenance() returns set
 #'   provenance.
+#'   \code{x[[name]]} returns the existing universe-bound partition after
+#'   integrity checking. Only one exact character name is supported; partial
+#'   or positional selection and replacement are not supported.
+#'   assignmentData(x, segmentation) returns exactly molecule_id, semantic
+#'   status and native typed cell_id in owning-universe order, one row per
+#'   molecule. Unassigned and ambiguous cell IDs are typed missing; candidate
+#'   evidence remains in ambiguityData(). Integrity is checked on read.
 #'   summary() returns a SimpleList with specimen_id, n_molecules, n_features,
-#'   n_segmentations and segmentations (the segmentationInfo() DataFrame).
+#'   n_segmentations, segmentations (the segmentationInfo() DataFrame), and
+#'   coordinate_info (the exact stored declaration, including unknowns, without
+#'   validation, completion or spatial prerequisites).
 #'   show() displays structural counts and names. Neither method compares cells.
 #'   runMetadata(), cellCensus(), assignmentStatus() and ambiguityData() remain
 #'   partition accessors.
@@ -144,6 +157,8 @@
 #' ss <- SegmentationSet(molecules, list(native = p), "specimen1")
 #' ss
 #' segmentationNames(ss)
+#' ss[["native"]]
+#' assignmentData(ss, "native")
 #' segmentationInfo(ss)
 #' moleculeData(ss)
 #' featureData(ss)
@@ -224,5 +239,6 @@ methods::setMethod("summary", "SegmentationSet", function(object, ...) {
         n_molecules = nrow(object@molecules),
         n_features = nrow(object@features),
         n_segmentations = length(object@segmentations),
-        segmentations = segmentationInfo(object))
+        segmentations = segmentationInfo(object),
+        coordinate_info = object@coordinate_info)
 })

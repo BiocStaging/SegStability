@@ -1,0 +1,258 @@
+---
+title: "SegStability: correspondence from shared molecules"
+author: "Rama Krishna Pudota"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{SegStability: correspondence from shared molecules}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Purpose and data assumptions
+
+Different cell boundaries can assign the same detected molecule to different
+cells. SegStability describes that correspondence and its effect on categorical
+cell-state conclusions. It compares alternative segmentations of **one
+immutable molecule universe**. Each molecule needs an exact, stable ID, and
+each segmentation needs a complete cell census and one explicit status per
+molecule: `assigned`, `unassigned`, or `ambiguous`. An ambiguous molecule is
+never assigned to a candidate cell by the package.
+
+The examples below use 24 synthetic molecules. Coordinates and state labels are
+illustrative and have no biological interpretation. The example includes empty
+cells, an unassigned molecule on each side, and one ambiguous molecule with two
+recorded candidates. See `?segmentationExample` for its tables.
+
+```{r data}
+library(SegStability)
+data("segmentationExample", package = "SegStability")
+d <- segmentationExample
+names(d)
+head(d$molecules[, c("molecule_id", "feature_id")])
+```
+
+# Build and inspect a segmentation set
+
+The constructor matches assignment rows by molecule ID. Their row order has no
+identity meaning. `cells` lists every cell, including those with no assigned
+molecules. Candidate evidence is separate from the assignment's unresolved
+status.
+
+```{r construction}
+make_partition <- function(side) {
+    a <- d$assignments[[side]]
+    ambiguity <- d$ambiguity[[side]]
+    if (!is.null(ambiguity)) {
+        ambiguity <- S4Vectors::SimpleList(
+            evidence = S4Vectors::DataFrame(ambiguity$evidence),
+            candidates = S4Vectors::DataFrame(ambiguity$candidates))
+    }
+    SegmentationPartition(d$molecules, side, d$cells[[side]],
+                          a$molecule_id, a$status, a$cell_id,
+                          ambiguity = ambiguity)
+}
+ss <- SegmentationSet(d$molecules,
+    list(first = make_partition("first"),
+         second = make_partition("second")),
+    specimen_id = "synthetic-example")
+segmentationNames(ss)
+segmentationInfo(ss)[, c("name", "n_cells", "n_molecules")]
+```
+
+`[[` retrieves a named, universe-bound partition. `assignmentData()` returns
+the original external molecule IDs, semantic statuses, and typed cell IDs in
+shared-universe order. Missing cell IDs for unresolved assignments are retained.
+Coordinate declarations can be read from either set or comparison summaries;
+reading a declaration does not certify spatial compatibility.
+
+```{r access}
+cellCensus(ss[["first"]])
+tail(assignmentData(ss, "first"), 4)
+summary(ss)$coordinate_info
+```
+
+# Correspondence across segmentations
+
+```{r comparison}
+cmp <- compareSegmentations(ss, "first", "second")
+summary(cmp)$coordinate_info
+edge <- correspondenceEdges(cmp)
+edge_table <- data.frame(
+    first = cellSummary(cmp, "first")$cell_id[S4Vectors::from(edge)],
+    second = cellSummary(cmp, "second")$cell_id[S4Vectors::to(edge)],
+    weight = S4Vectors::mcols(edge)$weight)
+edge_table
+componentSummary(cmp)[, c("component_id", "component_class")]
+```
+
+An edge weight counts molecules uniquely assigned to its two endpoint cells.
+Endpoint fractions divide by that cell's **complete uniquely assigned count**
+in its own segmentation. The denominator is independent of how many molecules
+the other segmentation assigned. For example, the first-side `a1` has five
+assigned molecules, including `m21`, which is unassigned on the second side;
+its edge to `b1` therefore has fraction `4/5`.
+
+Dominance uses the complete graph. Exact maximum ties remain ties; a reciprocal
+anchor requires one unique maximum at each endpoint. Connected components
+include empty and unmatched census cells. Component labels such as `split` and
+`merge` describe graph shape, rather than biological division or a preferred
+segmentation.
+
+```{r accounting}
+cellSummary(cmp, "first")[, c("cell_id", "assigned_mass", "matched_mass",
+                               "unmatched_mass", "dominance_count")]
+assignmentSummary(cmp)[assignmentSummary(cmp)$n_molecules > 0, ]
+```
+
+# Categorical cell-state stability
+
+Cell states are supplied separately and keyed by census cell ID. Comparable
+state names should use one shared vocabulary. A missing label is unresolved,
+and never counted as disagreement. The example has 20 shared molecules, of
+which 18 have labels on both endpoint cells: 15 share a label and three differ.
+The original first and second assigned denominators are 21 and 22.
+
+```{r states}
+state <- stateStability(cmp, d$states)
+state$global[, c("matched_mass", "resolved_mass", "same_state_mass",
+                 "different_state_mass", "unresolved_label_mass")]
+```
+
+# Reading support sensitivity
+
+`supportSensitivity()` selects edges in each requested direction when their
+weight divided by the **original** assigned mass of that direction's endpoint
+meets the threshold. The directions are separate calculations. Filtering does
+not change the primary graph, its dominance, components, census, or
+denominators.
+
+```{r support}
+support <- supportSensitivity(cmp, thresholds = c(0, 0.6),
+                              states = d$states)
+as.data.frame(support[, c("direction", "threshold", "original_matched_mass",
+                         "retained_mass", "excluded_matched_mass",
+                         "unmatched_mass", "assigned_mass")])
+```
+
+`retained_mass` counts shared molecules on selected edges;
+`excluded_matched_mass` counts originally shared molecules on filtered edges.
+`unmatched_mass` is the original assigned mass with no partner in the other
+segmentation. These are different losses. `assigned_mass` stays at the original
+denominator. The `cells` and `components` columns hold detailed tables for
+each direction and threshold; they retain original census and component rows.
+State columns describe the selected edges when labels were supplied. With
+`states = NULL`, state-dependent fields are `NA`, rather than zero. Missing
+labels remain unresolved. `endpoint_unavailable_cells` counts cells with a
+missing supplied state. `total_nonestimable_cells` counts zero-assigned cells;
+`conditional_nonestimable_cells` counts cells with no selected resolved mass.
+These fields distinguish an unavailable ratio from a measured value of zero.
+
+```{r support-detail}
+support$cells[[2]][["first"]][, c("cell_id", "assigned_mass",
+                                 "selected_retained_mass",
+                                 "selected_removed_mass")]
+support$components[[2]][, c("component_id", "component_class",
+                            "original_matched_mass", "selected_retained_mass")]
+```
+
+# Optional spatial evidence
+
+`anchorTopology()` requires an observation window, polygon geometry and a
+qualified common coordinate declaration. Eligible reciprocal anchors and their
+fan classes are derived from the complete correspondence graph. Missing or
+ineligible geometry remains explicit. `compareGeometry()` measures polygon
+overlap as separate evidence; its maximum-IoU matching is a derived alignment
+and does not replace shared-molecule correspondence. Neither function repairs,
+transforms or clips source geometry.
+
+This toy spatial example is run only when the optional `sf` package is present.
+The coordinate declaration here is supplied for the constructed toy polygons;
+it should never be inferred from an unqualified real dataset.
+
+```{r geometry}
+if (requireNamespace("sf", quietly = TRUE)) {
+    ring <- rbind(c(1, 1), c(2, 1), c(2, 2), c(1, 2), c(1, 1))
+    polygon <- sf::st_sfc(sf::st_polygon(list(ring)))
+    geometry <- list(
+        first = sf::st_sf(cell_id = "a1", geometry = polygon),
+        second = sf::st_sf(cell_id = "b1", geometry = polygon))
+    info <- S4Vectors::SimpleList(
+        units = "micrometres", origin = c(0, 0),
+        axis_directions = c("right", "up"),
+        transforms = S4Vectors::SimpleList(),
+        registration = "synthetic common XY",
+        specimen_id = "synthetic-example")
+    window <- c(xmin = 0, xmax = 10, ymin = 0, ymax = 10)
+    topology <- anchorTopology(cmp, geometry, window, info)
+    overlap <- compareGeometry(cmp, geometry, info)
+    head(topology$anchors)
+    head(overlap$pairs)
+}
+```
+
+# Agreement among segmentation runs
+
+When the same molecule universe has multiple stochastic segmentation runs,
+`replicateAgreement()` reports all nine assignment-status combinations and an
+adjusted Rand index (ARI) on **jointly assigned molecules only**. Run-local cell
+names are never treated as corresponding identities. This illustration relabels
+the synthetic first partition to show the label-invariant calculation; it is
+not a claim about variability of a real stochastic algorithm.
+
+```{r replicates}
+a <- d$assignments$first
+a$cell_id <- ifelse(is.na(a$cell_id), NA_character_,
+                    paste0("runA_", a$cell_id))
+b <- d$assignments$first
+b$cell_id <- ifelse(is.na(b$cell_id), NA_character_,
+                    paste0("runB_", b$cell_id))
+runA_cells <- data.frame(cell_id = paste0("runA_", d$cells$first$cell_id))
+runB_cells <- data.frame(cell_id = paste0("runB_", d$cells$first$cell_id))
+runA <- SegmentationPartition(d$molecules, "runA", runA_cells,
+    a$molecule_id, a$status, a$cell_id)
+runB <- SegmentationPartition(d$molecules, "runB", runB_cells,
+    b$molecule_id, b$status, b$cell_id)
+runs <- SegmentationSet(d$molecules, list(runA = runA, runB = runB),
+                        "synthetic-example")
+replicateAgreement(runs, c("runA", "runB"))$pairwise_summary
+```
+
+# Interoperability and interpretation
+
+`fromMoleculeExperiment()` extracts retained molecule IDs from an explicit
+assay/sample and requires separately supplied assignments and a complete cell
+census. It returns arguments for `SegmentationSet()`; source row order and
+coordinates cannot reconstruct a lost molecule ID. The small example in
+`?fromMoleculeExperiment` runs when that optional package is installed.
+`geometryFromSpatialFeatureExperiment()` extracts a keyed polygon sidecar with
+an explicit geometry-to-cell map and census; see its help page for a runnable
+guarded example. Geometry does not establish molecule correspondence or
+registration on its own.
+
+The assignment workflow was also exercised on an explicitly qualified region
+of the Xenium mouse-brain data released with the
+[ovrlpy study](https://doi.org/10.1038/s41587-026-03004-8).
+Original molecule IDs and a source-defined universe were retained for two
+saved segmentation outputs. That application confirmed that the package can
+describe shared-molecule correspondence and directional support at larger
+scale. Its segmentations also differed in upstream preparation, so the
+comparison does not isolate the effect of cell boundaries or support an
+accuracy ranking. The data and benchmark working files are not bundled here.
+
+SegStability does not run a segmentation method, infer missing provenance,
+choose a preferred segmentation, or establish biological ground truth. State
+agreement is conditional on supplied labels; geometry overlap is different
+evidence from molecule sharing. Interpret results within those inputs and
+their validation reports.
+
+```{r session-info}
+sessionInfo()
+```
