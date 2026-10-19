@@ -32,7 +32,7 @@ Suggests:
     MoleculeExperiment,
     SpatialFeatureExperiment
 Config/testthat/edition: 3
-VignetteBuilder: knitr, rmarkdown
+VignetteBuilder: knitr
 URL: https://github.com/ramakrishna-p21/SegStability
 BugReports: https://github.com/ramakrishna-p21/SegStability/issues
 Config/roxygen2/version: 8.1.0

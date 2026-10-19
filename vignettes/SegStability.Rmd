@@ -16,7 +16,7 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
-# Purpose and data assumptions
+# Introduction
 
 Different cell boundaries can assign the same detected molecule to different
 cells. SegStability describes that correspondence and its effect on categorical
@@ -30,6 +30,18 @@ The examples below use 24 synthetic molecules. Coordinates and state labels are
 illustrative and have no biological interpretation. The example includes empty
 cells, an unassigned molecule on each side, and one ambiguous molecule with two
 recorded candidates. See `?segmentationExample` for its tables.
+
+# Installation
+
+Before Bioconductor acceptance, install the development package from its
+public GitHub repository. The commands below are for an interactive R session;
+this vignette does not run them.
+
+```{r installation, eval=FALSE}
+install.packages(c("BiocManager", "remotes"))
+BiocManager::install(c("S4Vectors", "BiocStyle"))
+remotes::install_github("ramakrishna-p21/SegStability", build_vignettes = TRUE)
+```
 
 ```{r data}
 library(SegStability)
@@ -94,10 +106,12 @@ componentSummary(cmp)[, c("component_id", "component_class")]
 ```
 
 An edge weight counts molecules uniquely assigned to its two endpoint cells.
-Endpoint fractions divide by that cell's **complete uniquely assigned count**
-in its own segmentation. The denominator is independent of how many molecules
-the other segmentation assigned. For example, the first-side `a1` has five
-assigned molecules, including `m21`, which is unassigned on the second side;
+For a first-side cell, $N_X$ is its complete uniquely assigned molecule count;
+for a second-side cell, the corresponding count is $N_A$. Endpoint fractions
+divide the edge weight by that endpoint's own denominator. The denominator is
+independent of how many molecules the other segmentation assigned. For example,
+the first-side `a1` has five assigned molecules, including `m21`, which is
+unassigned on the second side;
 its edge to `b1` therefore has fraction `4/5`.
 
 Dominance uses the complete graph. Exact maximum ties remain ties; a reciprocal
@@ -237,15 +251,41 @@ an explicit geometry-to-cell map and census; see its help page for a runnable
 guarded example. Geometry does not establish molecule correspondence or
 registration on its own.
 
-The assignment workflow was also exercised on an explicitly qualified region
-of the Xenium mouse-brain data released with the
-[ovrlpy study](https://doi.org/10.1038/s41587-026-03004-8).
-Original molecule IDs and a source-defined universe were retained for two
-saved segmentation outputs. That application confirmed that the package can
-describe shared-molecule correspondence and directional support at larger
-scale. Its segmentations also differed in upstream preparation, so the
-comparison does not isolate the effect of cell boundaries or support an
-accuracy ranking. The data and benchmark working files are not bundled here.
+## A qualified Xenium application
+
+The [ovrlpy study](https://doi.org/10.1038/s41587-026-03004-8) released saved
+segmentations of Xenium mouse-brain data. A development-time replay used
+`Xenium_V1_FF_Mouse_Brain_MultiSection_1`, replicate 1, and source-defined
+500-µm tile (9,9): x and y in [4500,5000) µm. The immutable ROI universe has
+199,448 original molecule IDs. The comparison is between the original vendor
+assignment and saved Baysor v0.7.1 output. It exercised
+`compareSegmentations()` and `supportSensitivity()`; it did not evaluate cell
+states, paired geometry, topology, or stochastic replicates.
+
+The small machine-readable record is installed at
+`extdata/validation/ovrlpy_validation_summary.csv` and documented in
+`?ovrlpy_validation_summary`. The optional development-time scripts
+`scripts/prepare_ovrlpy_validation.py` and
+`scripts/reproduce_ovrlpy_validation.R` reconstruct the inputs from the
+specified public source files and check the reported results. They are not run
+while building or checking this package. No raw molecules, large segmentation
+outputs, or benchmark working files are bundled. This evaluated chunk reads
+only the bundled summary:
+
+```{r real-data-summary}
+path <- system.file("extdata", "validation",
+                    "ovrlpy_validation_summary.csv", package = "SegStability")
+validation <- read.csv(path, colClasses = "character")
+validation[validation$key %in% c("roi_universe_size", "correspondence_edges",
+                                 "shared_mass"), c("key", "value")]
+```
+
+Each method's census includes native-center cells and cells assigned an ROI
+molecule; a cell crossing the tile has a denominator restricted to its own ROI
+molecules. The saved outputs differed in upstream preparation, so this is not
+an isolated boundary-method comparison. Correspondence and directional
+support describe this qualified input pair; they neither rank segmentation
+accuracy nor establish biological ground truth.
 
 SegStability does not run a segmentation method, infer missing provenance,
 choose a preferred segmentation, or establish biological ground truth. State
